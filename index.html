@@ -2,134 +2,89 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Catalina Andrea ❤️</title>
+  <title>Para Catalina 💖</title>
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ffb6c1, #ffe6ea);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: black;
+      color: white;
       font-family: Arial, sans-serif;
       text-align: center;
     }
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 420px;
-      width: 90%;
+    .contenedor {
+      padding: 20px;
     }
 
-    .video {
-      position: relative;
+    iframe {
       width: 100%;
-      padding-top: 56.25%;
-      margin-bottom: 15px;
-    }
-
-    .video iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+      margin-top: 20px;
     }
 
     button {
-      font-size: 1.1rem;
-      padding: 10px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 15px;
       cursor: pointer;
     }
 
-    .continue {
-      background: #ff4d6d;
-      color: white;
-    }
-
-    .yes {
-      background: #ff4d6d;
-      color: white;
-    }
-
-    .no {
-      background: #ccc;
-    }
-
-    .hidden {
+    #mensajeFinal {
       display: none;
+      font-size: 22px;
+      margin-top: 30px;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="card">
+  <div class="contenedor">
 
-    <!-- PASO 1: VIDEO -->
-    <div id="step1">
-      <h2>🎬 Mira esto primero</h2>
+    <!-- VIDEO YOUTUBE -->
+    <iframe
+      src="https://www.youtube.com/embed/92Ldp3sf3Ng"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
 
-      <div class="video">
-        <iframe
-          src="https://www.youtube.com/embed/92Ldp3sf3Ng"
-          frameborder="0"
-          allow="encrypted-media; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
+    <!-- PREGUNTA -->
+    <h1 id="pregunta">¿Quieres ser mi San Valentín? 💘</h1>
 
-      <button class="continue" onclick="nextStep()">
-        Continuar ❤️
-      </button>
+    <button onclick="decirSi()">Sí 💖</button>
+    <button onclick="alert('😢')">No</button>
+
+    <!-- MENSAJE FINAL -->
+    <div id="mensajeFinal">
+      💌 Gracias por decir que sí…  
+      <br>
+      enviando una sorpresa 💖
     </div>
 
-    <!-- PASO 2: PREGUNTA -->
-    <div id="step2" class="hidden">
-      <h1>💖 Catalina Andrea 💖</h1>
-      <p>¿Quieres ser mi San Valentín? 💌</p>
-
-      <!-- FORMULARIO QUE ENVÍA EL CORREO -->
-      <form
-        action="https://formspree.io/f/mzdapoyz"
-        method="POST"
-        onsubmit="showThanks()"
-      >
-        <input type="hidden" name="respuesta" value="Dijo que SÍ ❤️">
-        <input type="hidden" name="pagina" value="San Valentín - Catalina Andrea">
-
-        <button class="yes" type="submit">
-          Sí 💖
-        </button>
-      </form>
-
-      <button class="no" onclick="alert('😅 No vale decir que no wuaja wuaja')">
-        No 🙈
-      </button>
-
-      <p id="thanks" class="hidden">
-        💌 Mensaje enviado al amor de tu vida… 😉
-      </p>
-    </div>
+    <!-- FORMULARIO OCULTO -->
+    <form id="formulario"
+          action="https://formspree.io/f/mzdapoyz"
+          method="POST">
+      <input type="hidden" name="respuesta" value="Catalina dijo que SÍ 💖">
+    </form>
 
   </div>
 
   <script>
-    function nextStep() {
-      document.getElementById("step1").style.display = "none";
-      document.getElementById("step2").style.display = "block";
-    }
+    function decirSi() {
+      // Ocultar pregunta y botones
+      document.getElementById("pregunta").style.display = "none";
+      document.querySelectorAll("button").forEach(b => b.style.display = "none");
 
-    function showThanks() {
-      document.getElementById("thanks").style.display = "block";
+      // Mostrar mensaje
+      document.getElementById("mensajeFinal").style.display = "block";
+
+      // Esperar 5 segundos y enviar correo
+      setTimeout(() => {
+        document.getElementById("formulario").submit();
+      }, 5000);
     }
   </script>
 
