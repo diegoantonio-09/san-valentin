@@ -2,75 +2,125 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Catalina 💖</title>
+  <title>Para Catalina Andrea ❤️</title>
 
   <style>
     body {
       margin: 0;
-      background: black;
-      color: white;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffb6c1, #ffe6ea);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-family: Arial, sans-serif;
       text-align: center;
     }
 
-    .contenedor {
-      padding: 20px;
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 420px;
+      width: 90%;
     }
 
-    iframe {
+    .video {
+      position: relative;
       width: 100%;
-      max-width: 560px;
-      height: 315px;
-      border: none;
-      margin-top: 20px;
+      padding-top: 56.25%;
+      margin-bottom: 15px;
+    }
+
+    .video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 20px;
-      margin: 15px;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
     }
 
-    #mensajeFinal {
+    .continue {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #ccc;
+    }
+
+    .hidden {
       display: none;
-      font-size: 22px;
-      margin-top: 30px;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="contenedor">
+  <div class="card">
 
-    <!-- VIDEO YOUTUBE -->
-    <iframe
-      src="https://www.youtube.com/embed/92Ldp3sf3Ng"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <!-- PASO 1: VIDEO -->
+    <div id="step1">
+      <h2>🎬 Mira esto primero</h2>
 
-    <!-- PREGUNTA -->
-    <h1 id="pregunta">¿Quieres ser mi San Valentín? 💘</h1>
+      <div class="video">
+        <iframe
+          src="https://www.youtube.com/embed/ID_DEL_VIDEO"
+          frameborder="0"
+          allow="encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-    <button onclick="decirSi()">Sí 💖</button>
-    <button onclick="alert('😢')">No</button>
-
-    <!-- MENSAJE FINAL -->
-    <div id="mensajeFinal">
-      💌 Gracias por decir que sí…  
-      <br>
-      enviando una sorpresa 💖
+      <button class="continue" onclick="nextStep()">
+        Continuar ❤️
+      </button>
     </div>
 
-    <!-- FORMULARIO OCULTO -->
-    <form id="formulario"
-          action="https://formspree.io/f/mzdapoyz"
-          method="POST">
-      <input type="hidden" name="respuesta" value="Catalina dijo que SÍ 💖">
-    </form>
+    <!-- PASO 2: PREGUNTA -->
+    <div id="step2" class="hidden">
+      <h1>💖 Catalina Andrea 💖</h1>
+      <p>¿Quieres ser mi San Valentín? 💌</p>
 
-  </div>
+      <!-- FORMULARIO QUE ENVÍA EL CORREO -->
+      <form
+        action="https://formspree.io/f/abcdwxyz"
+        method="POST"
+        onsubmit="showThanks()"
+      >
+        <input type="hidden" name="respuesta" value="Dijo que SÍ ❤️">
+        <input type="hidden" name="pagina" value="San Valentín - Catalina Andrea">
+
+        <button class="yes" type="submit">
+          Sí 💖
+        </button>
+      </form>
+
+      <button class="no" onclick="alert('😅 No vale decir que no')">
+        No 🙈
+      </button>
+
+      <p id="thanks" class="hidden">
+        💌 Mensaje enviado… revisa tu correo 😉
+      </p>
+    </div>
+
+ </div>
 
   <script>
     function decirSi() {
