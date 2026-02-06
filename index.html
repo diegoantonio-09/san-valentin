@@ -80,7 +80,7 @@
 
       <div class="video">
         <iframe
-          src="https://www.youtube.com/embed/ID_DEL_VIDEO"
+          src="https://www.youtube.com/embed/92Ldp3sf3Ng"
           frameborder="0"
           allow="encrypted-media; picture-in-picture"
           allowfullscreen>
@@ -99,7 +99,7 @@
 
       <!-- FORMULARIO QUE ENVÍA EL CORREO -->
       <form
-        action="https://formspree.io/f/abcdwxyz"
+        action="https://formspree.io/f/mzdapoyz"
         method="POST"
         onsubmit="showThanks()"
       >
@@ -120,22 +120,24 @@
       </p>
     </div>
 
- </div>
+  </div>
 
   <script>
-    function decirSi() {
-      // Ocultar pregunta y botones
-      document.getElementById("pregunta").style.display = "none";
-      document.querySelectorAll("button").forEach(b => b.style.display = "none");
+    function nextStep() {
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("step2").style.display = "block";
+    }
 
-      // Mostrar mensaje
-      document.getElementById("mensajeFinal").style.display = "block";
+    function showThanks() {
+      document.getElementById("thanks").style.display = "block";
+    }
 
-      // Esperar 5 segundos y enviar correo
+     // Esperar 5 segundos y enviar correo
       setTimeout(() => {
         document.getElementById("formulario").submit();
       }, 5000);
     }
+    
   </script>
 
 </body>
